@@ -83,13 +83,6 @@ DebugLevel=<%= @debuglevel %>
 EnableRemoteCommands=<%= @enableremotecommands %>
 <% end %>
 
-### Option: LogRemoteCommands
-#	Enable logging of executed shell commands as warnings.
-#	0 - disabled
-#	1 - enabled
-#
-LogRemoteCommands=<%= @logremotecommands %>
-
 
 ##### Passive checks related
 
@@ -110,12 +103,6 @@ ListenPort=<%= @listenport %>
 #	First IP address is sent to Zabbix server if connecting to it to retrieve list of active checks.
 #
 <% if @listen_ip %>ListenIP=<%= @listen_ip %><% end %>
-
-### Option: StartAgents
-#	Number of pre-forked instances of zabbix_agentd that process passive checks.
-#	If set to 0, disables passive checks and the agent will not listen on any TCP port.
-#
-StartAgents=<%= @startagents %>
 
 ##### Active checks related
 
@@ -192,14 +179,6 @@ BufferSend=<%= @buffersend %>
 #
 BufferSize=<%= @buffersize %>
 
-### Option: MaxLinesPerSecond
-#	Maximum number of new lines the agent will send per second to Zabbix Server
-#	or Proxy processing 'log' and 'logrt' active checks.
-#	The provided value will be overridden by the parameter 'maxlines',
-#	provided in 'log' or 'logrt' item keys.
-#
-MaxLinesPerSecond=<%= @maxlinespersecond %>
-
 ############ ADVANCED PARAMETERS #################
 
 ### Option: Alias
@@ -221,25 +200,6 @@ MaxLinesPerSecond=<%= @maxlinespersecond %>
 #	Spend no more than Timeout seconds on processing
 #
 Timeout=<%= @timeout %>
-
-<% if @kernel != 'windows' %>
-### Option: AllowRoot
-#	Allow the agent to run as 'root'. If disabled and the agent is started by 'root', the agent
-#	will try to switch to the user specified by the User configuration option instead.
-#	Has no effect if started under a regular user.
-#	0 - do not allow
-#	1 - allow
-#
-AllowRoot=<%= @allowroot %>
-<% end %>
-
-<% if @kernel != 'windows' %>
-### Option: User
-#	Drop privileges to a specific, existing user on the system.
-#	Only has effect if run as 'root' and AllowRoot is disabled.
-#
-<% if @zabbix_user %>User=<%= @zabbix_user %><% end %>
-<% end %>
 
 ### Option: Include
 #	You may include individual files or all files in a directory in the configuration file.
