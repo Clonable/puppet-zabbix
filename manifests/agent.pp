@@ -297,13 +297,18 @@ class zabbix::agent (
       zabbix_user               => $zabbix_user,
       additional_service_params => $additional_service_params,
       service_type              => $service_type,
-      service_name              => 'zabbix-agent',
+      service_name              => 'zabbix-agent2',
       require                   => Package[$zabbix_package_agent],
     }
   }
 
   if $agent_configfile_path != '/etc/zabbix/zabbix_agentd.conf' and $facts['kernel'] != 'windows' {
     file { '/etc/zabbix/zabbix_agentd.conf':
+      ensure  => absent,
+      require => Package[$zabbix_package_agent],
+    }
+  } elsif $agent_configfile_path != '/etc/zabbix/zabbix_agent2.conf' and $facts['kernel'] != 'windows' {
+    file { '/etc/zabbix/zabbix_agent2.conf':
       ensure  => absent,
       require => Package[$zabbix_package_agent],
     }
