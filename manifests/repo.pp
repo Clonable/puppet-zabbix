@@ -142,6 +142,7 @@ class zabbix::repo (
               Apt_key['zabbix-FBABD5F'],
               Apt_key['zabbix-A1848F5'],
             ],
+            architecture => 'amd64',
           }
         }
         Apt::Source['zabbix'] -> Package<|tag == 'zabbix'|>
